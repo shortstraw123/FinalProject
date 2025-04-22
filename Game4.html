@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <title>Lights Out!</title>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Hangman</title>
+        <!-- Google Fonts -->
+        <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap"
+        rel="stylesheet"
+        />
+    </head>
+    <style>
+        html{
+            font-family: "arial";
+        }
+        h2{
+            text-align: center;
+            margin-top: 80px;
+        }
+        #container{
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            background: url(https://unsplash.it/250/250/);
+            background-position: center center;
+            perspective: 200px;
+            div{
+                width: 50px;
+                height: 50px;
+                float: left;
+                background: #76829a;
+                transition: all 0.3s;
+                backface-visibility: visible;
+                &.flip{
+                    transform: rotateY(180deg) rotateX(180deg) rotateZ(180deg);
+                    opacity: 0;
+                }
+                &.flip-delay{
+                    transition-delay: 0.2s;
+                }
+                &:hover{
+                    box-shadow: inset 0 0 5px #fff;
+                }
+            }
+        }
+    </style>
+    <body>
+        <h2>Lights out game</h2>
+        <div id="container">
+        </div>
+
+    </body>
+    <script>
+        class App {
+            constructor(element,size){
+                this.grid = this.initGrid();
+                this.size = size;
+                this.element = element;
+                this.flip = this.flip.bind(this);
+                this.element.addEventListener('click', this.flip);
+
+                for(let r=0;r< size; r++){
+                    for(let c=0;c< size; c++){
+                        let div = document.createElement('div');
+                        div.style.width = (250/size)+'px';
+                        div.style.height = (250/size)+'px';
+                        div.dataset.location = JSON.stringify({r,c});
+                        element.appendChild(div);
+                    }
+                }
+            }
+            
+            render(r, c, delay){
+                let div = this.element.children[r * this.size + c];
+                div.className = this.grid[r][c] ? ('flip' + (delay ? ' flip-delay':'')): '';
+            }
+            
+            initGrid(){
+                const grid = Array(5);
+                for(let i=0;i<grid.length;i++){
+                grid[i] = [false, false, false,false, false];
+                }
+                return grid;
+            }
+            
+            flip(evt){
+                const locationJSON = evt.target.dataset.location;
+                if(!locationJSON){
+                    return;
+                }
+                const location = JSON.parse(locationJSON);
+                const i = location.r;
+                const j = location.c;
+                this.grid[i][j] = !this.grid[i][j];
+                this.render(i,j, false);
+                const dirs = [[1,0],[-1,0],[0,1],[0,-1]];
+                for(let d of dirs){
+                    let ni = i+d[0];
+                    let nj = j+d[1];
+                    if(ni>=0 && ni < this.size && nj>=0 && nj < this.size){
+                        this.grid[ni][nj] = !this.grid[ni][nj];
+                        this.render(ni, nj, true);
+                    }
+                }
+            }
+        }
+
+        new App(document.querySelector('#container'), 5);
+    </script>
+<html>
