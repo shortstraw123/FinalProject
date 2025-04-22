@@ -7,4 +7,8 @@ For our final project, we created a game cabinet with some basic games. There ar
 - Tic-Tac-Toe
 - Lights out
 
-Each have their own page and functions. All style and java are done within each file (Game 1-4 respectively).
+Each have their own page and functions. All style and java are done within each file (Game1.html-Game4.html respectively).
+
+### Future work
+To make this better, the games could be overall more advanced or have a cleaner overall look. But they all do what they are supposed to do.
+
