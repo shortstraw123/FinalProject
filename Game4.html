@@ -43,12 +43,14 @@
     <body>
         <h3 style="text-align: center;"><a href="index.html">Return home</a></h3>
         <h2>Lights out game</h2>
+        <div id="counter">0</div>
         <div id="container">
         </div>
 
     </body>
     <script>
         class App {
+            
             constructor(element,size){
                 this.grid = this.initGrid();
                 this.size = size;
@@ -81,6 +83,8 @@
             }
             
             flip(evt){
+                var x = document.getElementById("counter");
+                document.getElementById("counter").innerHTML = x+1;
                 const locationJSON = evt.target.dataset.location;
                 if(!locationJSON){
                     return;
