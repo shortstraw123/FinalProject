@@ -79,6 +79,12 @@
         <button id="new-btn">New Game</button>
     </div>
     <main>
+    <form>
+        <label>Player X</label>
+        <input type="text" id="nameX" name="nameX" placeholder="Enter Player One's Name" required/>
+        <label>Player O</label>
+        <input type="text" id="nameO" name="nameO" placeholder="Enter Player Two's Name" required/>
+    </form>
         <div class="container">
             <div class="game">
                 <button class="box"></button>
@@ -154,6 +160,8 @@
 
         const checkWinner = () => {
             let hasWin = false;
+            const playerX = document.querySelector("#nameX").value;
+            const playerO = document.querySelector("#nameO").value;
             for (let pattern of winPatterns) {
                 let pos1Val = boxes[pattern[0]].innerText;
                 let pos2Val = boxes[pattern[1]].innerText;
@@ -161,7 +169,8 @@
 
                 if (pos1Val !== "" && pos2Val!=="" && pos3Val!=="" && 
                     pos1Val === pos2Val && pos2Val === pos3Val) {
-                    showWinner(pos1Val);
+                    let winnerName = pos1Val === 'X' ? playerX : playerO; 
+                    showWinner(winnerName);
                     hasWin = true;
                     return;
                 }
@@ -175,6 +184,7 @@
                 }
             }
         };
+
 
         const resetGame = () => {
             turnO = true;
