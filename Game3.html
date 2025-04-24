@@ -13,6 +13,10 @@
         body {
             text-align: center;
         }
+        .dark-mode {
+            background-color: black;
+            color: white;
+        }
         .container {
             height: 70vh;
             display: flex;
@@ -89,6 +93,8 @@
             </div>
         </div>
         <button id="reset">Reset Game</button>
+        <br>
+        <button onclick="darkMode()">Dark Mode</button>
     </main>
     <script>
         let boxes = document.querySelectorAll('.box');
@@ -175,7 +181,10 @@
             enableBoxes();
             msgContainer.classList.add('hide');
         };
-
+        function darkMode() {
+            var element = document.body;
+            element.classList.toggle("dark-mode");
+        }                         
         newGameBtn.addEventListener('click', resetGame);
         resetBtn.addEventListener('click', resetGame);
     </script>
