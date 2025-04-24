@@ -83,8 +83,6 @@
             }
             
             flip(evt){
-                var x = document.getElementById("counter");
-                document.getElementById("counter").innerHTML = x+1;
                 const locationJSON = evt.target.dataset.location;
                 if(!locationJSON){
                     return;
@@ -103,6 +101,8 @@
                         this.render(ni, nj, true);
                     }
                 }
+                var x = document.getElementById("counter");
+                document.getElementById("counter").innerHTML = x+1;
             }
         }
 
