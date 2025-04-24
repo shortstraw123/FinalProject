@@ -49,6 +49,7 @@
 
     </body>
     <script>
+        document.addEventListener("click", addUp, false);
         class App {
             
             constructor(element,size){
@@ -102,7 +103,7 @@
                     }
                 }
                 var x = document.getElementById("counter");
-                document.getElementById("counter").innerHTML += 1;
+                document.getElementById("counter").innerHTML = x+1;
             }
         }
 
