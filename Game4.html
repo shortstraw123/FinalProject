@@ -18,6 +18,10 @@
             text-align: center;
             margin-top: 80px;
         }
+        #gameHead{
+            text-align: center;
+            font-size: 20px;
+        }
         #container{
             width: 250px;
             height: 250px;
@@ -43,13 +47,14 @@
     <body>
         <h3 style="text-align: center;"><a href="index.html">Return home</a></h3>
         <h2>Lights out game</h2>
-        <!-- <p id="counter">0</p> -->
+        <div id="gameHead" style="text-align: center;">
+            <p>Moves:</p><p id="counter">0</p>
+        </div>
         <div id="container">
         </div>
 
     </body>
     <script>
-        // document.addEventListener("click", addUp, false);
         class App {
             
             constructor(element,size){
@@ -102,8 +107,8 @@
                         this.render(ni, nj, true);
                     }
                 }
-                // var x = document.getElementById("counter");
-                // document.getElementById("counter").innerHTML = parseInt(x.innerHTML) + 1;
+                var x = document.getElementById("counter");
+                document.getElementById("counter").innerHTML = parseInt(x.innerHTML) + 1;
             }
         }
 
